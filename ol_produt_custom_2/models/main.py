@@ -28,7 +28,7 @@ class AccountmoveINherit(models.Model):
     sub_grp_id = fields.Many2many('sub.group.custom', string="Sub Group" ,compute='_sub_group_comp', store=True)
     sub_sub_grp_id = fields.Many2many('sub.sub.group.custom', string="Sub Sub Group",compute='_sub_sub_group_comp', store=True)
     product_make_type_id = fields.Many2one('product.make.type', string="Product Make Type")
-    parts_family_id = fields.Many2one('parts.family',  string="DEf" invisible=True)
+    parts_family_id = fields.Many2one('parts.family',  string="DEf", invisible=True)
     attachment_ids = fields.Many2many('ir.attachment',
                                       string='Files')
     oem_code = fields.Char('OEM Code')
