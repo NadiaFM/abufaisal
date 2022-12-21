@@ -20,6 +20,7 @@ class image(models.Model):
 class AccountmoveINherit(models.Model):
     _inherit = 'product.product'
 
+    default_code = fields.Char("Part Number")
     # product_i = fields.Many2one(related="product_variant_id.alternative_product_ids", string='Reference')
     alternative_product_ids = fields.One2many('alternative.product.line','alternative_product_id')
     brand_id = fields.Many2one('brand.main.custom', string="Brand")
