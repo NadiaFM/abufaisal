@@ -61,7 +61,7 @@
                                 string="Refresh"
                                 type="object"
                             />
-                                <field name="product_image" widget="image"  class="oe_avatar zoom"  readonly="1" nolabel="1" force_save="1"/>
+                                <field name="product_image" widget="image"  style="margin-top:30px;padding-top:30px;padding-right:30px;margin-right:30px" class="oe_avatar zoom"  readonly="1" nolabel="1" force_save="1"/>
                              </div>
                              </div>
                              </div>
