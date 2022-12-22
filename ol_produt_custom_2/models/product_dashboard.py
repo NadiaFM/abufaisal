@@ -101,6 +101,7 @@ class CustomDashboard(models.TransientModel):
     logs_description = fields.Char('Description')
     logs_price = fields.Char('Price')
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
+    logs_contact = fields.Char(string="Contact")
     dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs', compute='add_log_ids_dash')
 
     @api.onchange('to_date')
@@ -285,6 +286,7 @@ class CustomDashboard(models.TransientModel):
                     'product_id': self.product_db_id.id,
                     'description': self.logs_description,
                     'user_id': self.env.user.id,
+                    'cus_contact': self.logs_contact,
                     'price': self.logs_price,
                     'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
                 })]
@@ -455,6 +457,7 @@ class DashboardLogs(models.Model):
     product_id = fields.Many2one('product.product', string='Product', readonly=True)
     user_id = fields.Many2one('res.users', string='User', readonly=True)
     partner_id = fields.Many2one('res.partner', string='Customer')
+    cus_contact = fields.Char(string="Contact")
     price = fields.Float('Price')
     description = fields.Char('Description')
 
