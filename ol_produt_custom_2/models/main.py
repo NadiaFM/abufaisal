@@ -390,3 +390,13 @@ class Inheritstocklocation(models.Model):
 
 
 
+class InheritAccountMoveCustom(models.Model):
+    _inherit = 'account.move.line'
+
+    custom_amount = fields.Float(string="Custom Amount")
+
+    @api.onchange('custom_amount')
+    def custom_ammount(self):
+        for line in self:
+            if line.custom_amount:
+               line.price_unit = line.custom_amount/line.quantity
