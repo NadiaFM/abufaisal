@@ -531,7 +531,18 @@
             </field>
         </record>
 
+     <record model="ir.ui.view" id="inherit_account_move_line_ids_for_customamount">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
 
+                <xpath expr="//field[@name='line_ids']/tree//field[@name='price_subtotal']" position="before">
+                     <field  name="custom_amount" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
 
 
 
