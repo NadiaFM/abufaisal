@@ -116,6 +116,7 @@
                                                     <button name="DEl_button" type="object" string="Delete" class="oe_highlight"/>
                                                      <field name="user_id"/>
                                                 <field name="partner_id"/>
+                                                <field name="cus_contact"/>
                                                 <field name="price"/>
                                                 <field name="description"/>
                                                 </tree>
@@ -271,6 +272,7 @@
                                     </group>
                                     <group>
                                         <field name="logs_partner_id"/>
+                                        <field name="logs_contact"/>
                                         <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>
                                     </group>
 
