@@ -6,7 +6,7 @@ from io import StringIO
 from odoo import api, fields, models
 from datetime import date
 from odoo.tools.float_utils import float_round
-from odoo.exceptions import Warning
+from odoo.exceptions import Warning, UserError
 
 
 import io
@@ -316,20 +316,19 @@ class sale_day_book_wizard(models.TransientModel):
                 purchase_return_qty = 0
                 scrap_qty = 0
                 outgoing_internal = 0
-
                 if scrap:
                     for scr in scrap:
-                        if scr.location_id.usage.id == data['location_id'].id:
+                        if scr.location_id.id == data['location_id'].id:
                             scrap_qty += scr.product_uom_qty
 
                 if sale_return:
                     for sale in sale_return:
-                        if sale.location_dest_id.usage.id == data['location_id'].id:
+                        if sale.location_dest_id.id == data['location_id'].id:
                             sale_return_qty += sale.product_uom_qty
                 
                 if purchase_return:
                     for purchase in purchase_return:
-                        if purchase.location_dest_id.usage.id == data['location_id'].id:
+                        if purchase.location_dest_id.id == data['location_id'].id:
                             purchase_return_qty += purchase.product_uom_qty
                 
                 #--------
@@ -356,10 +355,10 @@ class sale_day_book_wizard(models.TransientModel):
 
                         #khurram
 
-                        if inter.location_dest_id.usage.id == data['location_id'].id:
+                        if inter.location_dest_id.id == data['location_id'].id:
                             incoming_internal += inter.product_uom_qty
 
-                        elif inter.location_id.usage.id == data['location_id'].id:
+                        elif inter.location_id.id == data['location_id'].id:
                             outgoing_internal += inter.product_uom_qty
                         #----
 
