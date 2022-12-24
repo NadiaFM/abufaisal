@@ -801,7 +801,7 @@ class sale_day_book_wizard(models.TransientModel):
             workbook.save(fp)
             
             # export_id = self.env['sale.day.book.report.excel'].create({'excel_file': base64.encodestring(fp.getvalue()), 'file_name': filename})
-            export_id = self.env['sale.day.book.report.excel'].create({'excel_file': base64.decodebytes(fp.getvalue()), 'file_name': filename})
+            export_id = self.env['sale.day.book.report.excel'].create({'excel_file': base64.encodestring(fp.getvalue()), 'file_name': filename})
             res = {
                     'view_mode': 'form',
                     'res_id': export_id.id,
