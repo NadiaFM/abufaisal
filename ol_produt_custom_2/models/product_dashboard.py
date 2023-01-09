@@ -144,7 +144,8 @@ class CustomDashboard(models.TransientModel):
 
             loations_stock=[]
             price_list = self.env['product.pricelist'].search([('warehouse_id', '=', w.id)])
-            price_list_item = self.env['product.pricelist.item'].search([('pricelist_id','=',price_list.id),('product_id', '=', self.product_db_id.id)])
+            for pr_list in price_list:
+                price_list_item = self.env['product.pricelist.item'].search([('pricelist_id','=',pr_list.id),('product_id', '=', self.product_db_id.id)])
             cost = self.env['product.product'].search([('id', '=', self.product_db_id.id)])
 
             reorder_qty="Not Maintanied"
