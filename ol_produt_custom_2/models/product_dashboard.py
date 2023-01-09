@@ -161,19 +161,20 @@ class CustomDashboard(models.TransientModel):
                         reorder_level=str(ro.product_max_qty)
                     if  q.quantity>0 and l.id not in loations_stock:
                         loations_stock.append(l.id)
-            data_all.append({
-                'branch':w.id,
-                'loc_ids':[(6,0,loations_stock)],
-                'qty_inhand':quantities,
-                'max_price':price_list_item.fixed_price,
-                'min_price':price_list_item.min_price,
-                'trader':price_list_item.trade_price,
-                'export_price':price_list_item.export_price,
-                'cost':cost.standard_price,
-                'reorder_qty':reorder_qty,
-                'reorder_level':reorder_level,
-                'warehouse_shop':w.ware_type
-            })
+            for lst_item in price_list_item:
+                data_all.append({
+                    'branch':w.id,
+                    'loc_ids':[(6,0,loations_stock)],
+                    'qty_inhand':quantities,
+                    'max_price':lst_item.fixed_price,
+                    'min_price':lst_item.min_price,
+                    'trader':lst_item.trade_price,
+                    'export_price':lst_item.export_price,
+                    'cost':cost.standard_price,
+                    'reorder_qty':reorder_qty,
+                    'reorder_level':reorder_level,
+                    'warehouse_shop':w.ware_type
+                })
 
 
         enter_data_shop=self.env['dashboard.shop']
